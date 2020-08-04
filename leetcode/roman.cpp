@@ -20,7 +20,7 @@ public:
             } else {
                 d = convert(s[i]);;
             }
-            //cout<<d<<endl;
+            // cout<<d<<endl;
             num = num + d;
         }
         return num;
