@@ -22,13 +22,26 @@ public:
         }
         return nos;
     }
+
+    int majorityElementUsingMoore(vector<int>& nums) {
+        int maj = nums[0], count = 1,i;
+        for(i=1;i<nums.size();i++){
+            if(nums[i]==maj){count++; continue;}
+            if(count != 0){count--;}
+            else{
+                maj = nums[i];
+                count = 1;
+            }
+        }
+        return maj;
+    }
 };
 
 int main(){
     vector <int> vec {1,5,4,4,5,1,2,3,3,3};
     Solution obj;
-    cout<<obj.majorityElement(vec);
-
+    cout<<obj.majorityElement(vec)<<endl;
+    cout<<obj.majorityElementUsingMoore(vec)<<endl;
 
     return 0;
 }
