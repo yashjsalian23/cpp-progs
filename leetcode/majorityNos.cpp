@@ -42,6 +42,5 @@ int main(){
     Solution obj;
     cout<<obj.majorityElement(vec)<<endl;
     cout<<obj.majorityElementUsingMoore(vec)<<endl;
-
     return 0;
 }
