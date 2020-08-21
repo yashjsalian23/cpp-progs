@@ -12,14 +12,14 @@ class Node{
 };
 
 class Tree{
-    private:
+    public:
     Node *root;
     public:
     Tree(){
         root = nullptr;
     }
 
-    void createTree(){
+    Node* createTree(){
         Node *temp1;
         Node *temp2;
         int val;
@@ -37,7 +37,7 @@ class Tree{
             temp1 = q.front();
             q.pop();
 
-            cout<<"Enter left child data"<<endl;
+            cout<<"Enter left child data of "<<temp1->data<<endl;
             cin>>val;
             if(val!=-1){
                 temp2 = new Node;
@@ -48,7 +48,7 @@ class Tree{
                 q.emplace(temp2);
             }
 
-            cout<<"Enter right child data"<<endl;
+            cout<<"Enter right child data of "<<temp1->data<<endl;
             cin>>val;
             if(val!=-1){
                 temp2 = new Node;
@@ -59,14 +59,26 @@ class Tree{
                 q.emplace(temp2);
             }
         }
+        return root;
     }
+
+    void preorder(Node *t){
+        if(t != NULL){
+            cout<<t->data<<endl;
+            preorder(t->lchild);
+            preorder(t->rchild);
+        }
+    }
+
+    
 };
 
 int main(){
 
     Tree obj;
-    obj.createTree();
-
+    Node *temp;
+    temp = obj.createTree();
+    obj.preorder(temp);
 
     return 0;
 }
