@@ -64,9 +64,25 @@ class Tree{
 
     void preorder(Node *t){
         if(t != NULL){
-            cout<<t->data<<endl;
+            cout<<t->data<<" ";
             preorder(t->lchild);
             preorder(t->rchild);
+        }
+    }
+
+    void inorder(Node *t){
+        if(t != NULL){
+            inorder(t->lchild);
+            cout<<t->data<<" ";
+            inorder(t->rchild);
+        }
+    }
+
+    void postorder(Node *t){
+        if(t != NULL){
+            postorder(t->lchild);
+            postorder(t->rchild);
+            cout<<t->data<<" ";
         }
     }
 
@@ -78,7 +94,12 @@ int main(){
     Tree obj;
     Node *temp;
     temp = obj.createTree();
+    cout<<"pre-order: ";
     obj.preorder(temp);
+    cout<<"\nin-order: ";
+    obj.inorder(temp);
+    cout<<"\npost-order: ";
+    obj.postorder(temp);
 
     return 0;
 }
