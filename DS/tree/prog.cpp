@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 #include <algorithm>
 
 using namespace std;
@@ -70,6 +71,36 @@ class Tree{
         }
     }
 
+    void iterativePreorder(Node *t){
+        stack <Node*> s;
+        while(t!=nullptr || !s.empty()){
+            if(t){
+                cout<<t->data<<" ";
+                s.push(t);
+                t = t->lchild;
+            } else {
+                t = s.top();
+                s.pop();
+                t = t->rchild;
+            }
+        }
+    }
+
+    void iterativeInOrder(Node *t){
+        stack <Node*> s;
+        while(t!=nullptr || !s.empty()){
+            if(t){
+                s.push(t);
+                t = t->lchild;
+            } else {
+                t = s.top();
+                s.pop();
+                cout<<t->data<<" ";
+                t = t->rchild;
+            }
+        }
+    }
+
     void inorder(Node *t){
         if(t != NULL){
             inorder(t->lchild);
@@ -86,6 +117,25 @@ class Tree{
         }
     }
 
+    void levelorder(Node *t){
+        queue <Node *> q;
+        cout<<t->data<<" ";
+        q.emplace(t);
+        Node *temp;
+        while(!q.empty()){
+            temp = q.front();
+            q.pop();
+            if(temp->lchild){
+                cout<<temp->lchild->data<<" ";
+                q.emplace(temp->lchild);
+            }
+            if(temp->rchild){
+                cout<<temp->rchild->data<<" ";
+                q.emplace(temp->rchild); 
+            }
+        }
+    }
+
     
 };
 
@@ -96,10 +146,17 @@ int main(){
     temp = obj.createTree();
     cout<<"pre-order: ";
     obj.preorder(temp);
+    cout<<"\npre-order it: ";
+    obj.iterativePreorder(temp);
+    cout<<"\nin-order it: ";
+    obj.iterativeInOrder(temp);
     cout<<"\nin-order: ";
     obj.inorder(temp);
     cout<<"\npost-order: ";
     obj.postorder(temp);
+    cout<<"\nlevel-order: ";
+    obj.levelorder(temp);
+
 
     return 0;
 }
