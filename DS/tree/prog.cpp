@@ -136,6 +136,27 @@ class Tree{
         }
     }
 
+    int count(Node *p){
+        int x=0,y=0;
+        if(p){
+            x = count(p->lchild);
+            y = count(p->rchild);
+            return x+y+1;
+        }
+        return 0;
+    }
+
+    
+    int sum(Node *p){
+        int x=0,y=0;
+        if(p){
+            x = sum(p->lchild);
+            y = sum(p->rchild);
+            return x+y+p->data;
+        }
+        return 0;
+    }
+
     
 };
 
@@ -156,6 +177,8 @@ int main(){
     obj.postorder(temp);
     cout<<"\nlevel-order: ";
     obj.levelorder(temp);
+    cout<<"\nCount:"<<obj.count(temp);
+    cout<<"\nSum:"<<obj.sum(temp);
 
 
     return 0;
